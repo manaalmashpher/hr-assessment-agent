@@ -1,3 +1,12 @@
+---
+title: Hr Assessment Agent
+emoji: 💼
+colorFrom: blue
+colorTo: indigo
+sdk: docker
+pinned: false
+---
+
 # Conversational SHL Assessment Recommender
 
 This repository contains a conversational agent designed to recommend SHL Individual Test Solutions based on natural language dialogue. The agent helps hiring managers navigate the SHL product catalog by clarifying vague intents, honoring constraints, and providing grounded, hallucination-free recommendations.
