@@ -50,6 +50,16 @@ app.add_middleware(
 )
 
 
+@app.get("/")
+async def root():
+    """Welcome message and redirect to docs."""
+    return {
+        "message": "SHL Assessment Recommender API is running.",
+        "documentation": "/docs",
+        "health_check": "/health"
+    }
+
+
 # ── Endpoints ─────────────────────────────────────────────────────────────────
 
 @app.get("/health")
