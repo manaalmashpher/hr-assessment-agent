@@ -8,3 +8,5 @@ idna==3.13
 numpy==2.4.4
 packaging==26.2
 typing_extensions==4.15.0
+
+google-genai

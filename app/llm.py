@@ -1,5 +1,5 @@
 """
-Groq LLM client wrapper with JSON-mode enforcement and retry logic.
+Groq LLM client wrapper with JSON-mode enforcement.
 """
 import json
 import logging
@@ -7,7 +7,7 @@ import os
 import re
 import time
 
-from groq import Groq, RateLimitError, APIStatusError
+from groq import Groq
 
 logger = logging.getLogger(__name__)
 
