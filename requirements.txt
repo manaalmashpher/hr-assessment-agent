@@ -10,3 +10,7 @@ packaging==26.2
 typing_extensions==4.15.0
 
 google-genai
+
+sentence-transformers
+torch
+transformers
