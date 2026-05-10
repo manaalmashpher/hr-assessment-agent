@@ -14,3 +14,7 @@ google-genai
 sentence-transformers
 torch
 transformers
+
+fastapi
+uvicorn
+python-dotenv
