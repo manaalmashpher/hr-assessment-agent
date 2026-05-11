@@ -123,15 +123,15 @@ def _retrieve_catalog_context(messages: list[Message]) -> str:
 
     # ── Semantic search for remaining slots ───────────────────────────────
     query = _build_search_query(messages)
-    for item in catalog.search(query, top_k=5):
+    for item in catalog.search(query, top_k=10):
         link = item.get("link")
         if link and link not in seen_urls:
             items.append(item)
             seen_urls.add(link)
-        if len(items) >= 5:
+        if len(items) >= 10:
             break
 
-    return catalog.format_context(items[:5])
+    return catalog.format_context(items[:10])
 
 
 def _validate_recommendations(raw: list[dict]) -> list[Recommendation]:

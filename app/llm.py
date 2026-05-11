@@ -47,12 +47,15 @@ def generate(messages: list[dict], temperature: float = 0.1) -> str:
                 response_format={"type": "json_object"},
                 timeout=12.0,  # stay well under the 30-s hard limit overall (12s x 2 = 24s max)
             )
-            content = resp.choices[0].message.content
-            logger.debug("LLM response (%s): %s", model, content[:200])
-            return content
+            return resp.choices[0].message.content
 
         except Exception as exc:
-            logger.warning("Attempt %d with model %s failed: %s", attempt + 1, model, exc)
+            # If rate limited, wait a moment before trying fallback
+            if "429" in str(exc):
+                logger.warning("Rate limited on %s. Waiting 1.5s...", model)
+                time.sleep(1.5)
+            
+            logger.warning("Attempt %d (%s) failed: %s", attempt + 1, model, exc)
             if attempt == len(models_to_try) - 1:
                 raise
             continue

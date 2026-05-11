@@ -82,8 +82,12 @@ class Catalog:
         with open(data_path, "r", encoding="utf-8") as fh:
             raw: list[dict] = json.loads(fh.read(), strict=False)
 
-        # Keep only items that scraped successfully
-        self.items: list[dict] = [i for i in raw if i.get("status") == "ok"]
+        # Keep only items that scraped successfully and are NOT Job Solutions
+        self.items: list[dict] = [
+            i for i in raw 
+            if i.get("status") == "ok" 
+            and "solution" not in i.get("name", "").lower()
+        ]
         logger.info("Catalog: %d usable items", len(self.items))
 
         # Pre-compute test_type codes and stash them on the item dict
